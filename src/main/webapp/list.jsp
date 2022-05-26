@@ -17,12 +17,21 @@ int pageRow = (Integer) request.getAttribute("pageRow");;
 int pagingNum = (Integer) request.getAttribute("pagingNum");
 int startNum = (Integer) request.getAttribute("startNum");
 
+String field = (String)request.getAttribute("field");
+String keyWord = (String)request.getAttribute("keyWord");
+
+String titleF = (String)request.getAttribute("titleF");
+String contentF = (String)request.getAttribute("contentF");
+String writerF = (String)request.getAttribute("writerF");
+
+
 int lastPage = totalRow/pageRow+((totalRow%pageRow == 0)?0:1);
 if(pageNum > lastPage || pageNum < 1) {
-	response.sendRedirect("http://www.naver.com");
+	/* response.sendRedirect("http://www.naver.com"); */
 }
 //Collection<BoardVO> list = (Collection)request.getAttribute("list");
 //int totalRow = (Integer)request.getAttribute("totalRow");
+
 %>
 <!DOCTYPE html>
 <html>
@@ -44,8 +53,28 @@ if(pageNum > lastPage || pageNum < 1) {
 <body>
 	<div class="container">
 		<div>
-			전체글 수 :
-			<%=totalRow%></div>
+			<div class="pull-left">전체글 수 : <%=totalRow%></div><br/>
+			<div>
+			<form>
+			제목:<input type="text" name="titleF" value="<%=titleF %>" class="form-control" style="display:inline-block; width:10%"><br/>
+				내용:<input type="text" name="contentF" value="<%=contentF %>" class="form-control" style="display:inline-block; width:10%"><br/>
+				작성자:<input type="text" name="writerF" value="<%=writerF %>" class="form-control" style="display:inline-block; width:10%"><br/>
+				<button class="btn btn-default">검색</button>
+				</form>
+			</div>
+			<div class="pull-right" style="width:310px">
+				<form>
+				<select name="field" class="form-control" style="display:inline-block; width:30%">
+					<option value="">전체</option>
+					<option value="title"<%="title".equals(field)?"selected='selected'":"" %>>제목</option>
+					<option value="content" <%="content".equals(field)?"selected='selected'":"" %>>내용</option>
+					<option value="titleContent" <%="titleContent".equals(field)?"selected='selected'":"" %>>제목+내용</option>
+				</select>
+				<input type="text" name="keyWord" value="<%=keyWord %>" class="form-control" style="display:inline-block; width:50%">
+				<!-- <button class="btn btn-default">검색</button> -->
+				</form>
+			</div>
+		</div>
 		<table class="table">
 			<thead>
 				<tr>
@@ -103,7 +132,7 @@ if(pageNum > lastPage || pageNum < 1) {
 						<%
 					} else {
 						%>
-						<li class=""><a href="?pageNum=<%=i%>"><%=i%></a></li>
+						<li><a href="?pageNum=<%=i%>&field=<%=field%>&keyWord=<%=keyWord%>"><%=i%></a></li>
 						<%
 					}
 				

@@ -24,11 +24,19 @@ public class ListServiceImpl implements ListService {
 		return boardinfo;
 	}
 
-	public BoardInfo boardInfo(int startPage, int pageRow) {
+	public BoardInfo boardInfo(int startPage, int pageRow, String field, String keyWord) {
 		BoardInfo boardinfo = new BoardInfo();
-		boardinfo.setList(new ListMapper().read(startPage, pageRow));
-		boardinfo.setTotalRow(new ListMapper().totalRow());
+		boardinfo.setList(new ListMapper().read(startPage, pageRow, field, keyWord));
+		boardinfo.setTotalRow(new ListMapper().totalRow(field, keyWord));
+		return boardinfo;
+	}
+	
+	public BoardInfo boardInfo(int startPage, int pageRow, String titleF, String contentF, String writerF) {
+		BoardInfo boardinfo = new BoardInfo();
+		boardinfo.setList(new ListMapper().read(startPage, pageRow, titleF, contentF, writerF));
+		boardinfo.setTotalRow(new ListMapper().totalRow(titleF, contentF, writerF));
 		return boardinfo;
 	}
 
 }
+//30번째줄 totalRow() 괄호 속에 keyWord를 넣어주지 않으면 해당하지 않는 값까지 다 나온다.
