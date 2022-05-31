@@ -12,20 +12,25 @@ public class UpdateMapper {
 		String url = "jdbc:mysql://localhost:3306/smart?characterEncoding=UTF-8&serverTimezone=Asia/Seoul";
 		String user = "root";
 		String password = "smart";
-		String sql = " UPDATE board SET title = ?, content = ?, writer = ? ";
+		String sql = " UPDATE board SET title = ?, content = ?,upfile =?, writer = ? ";
 		sql += " WHERE num = ? ";
 		Connection conn = null;
 		PreparedStatement stmt = null;
+		
+		int idx = 1;
+		
 		try{
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			
 			conn = DriverManager.getConnection(url, user, password);
 			stmt = conn.prepareStatement(sql);
 
-			stmt.setString(1, vo.getTitle());
-			stmt.setString(2, vo.getContent());
-			stmt.setString(3, vo.getWriter());
-			stmt.setInt(4, vo.getNum());
+			stmt.setString(idx++, vo.getTitle());
+			stmt.setString(idx++, vo.getContent());
+			stmt.setString(idx++, vo.getRealFileName());
+//			stmt.setString(idx++, vo.getRealSaveFileName());
+			stmt.setString(idx++, vo.getWriter());
+			stmt.setInt(idx++, vo.getNum());
 			
 			stmt.executeUpdate();
 		} catch (Exception e){

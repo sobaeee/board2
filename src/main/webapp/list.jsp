@@ -81,6 +81,7 @@ if(pageNum > lastPage || pageNum < 1) {
 					<th>글번호</th>
 					<th>제목</th>
 					<th>작성자</th>
+					<th>첨부파일</th>
 					<th>작성일</th>
 				</tr>
 			</thead>
@@ -94,6 +95,7 @@ if(pageNum > lastPage || pageNum < 1) {
 					<td><%=totalNum--%></td>
 					<td><a href="view?num=<%=vo.getNum()%>"><%=vo.getTitle()%></a></td>
 					<td><%=vo.getWriter()%></td>
+					<td><%=vo.getRealFileName()!=null?"<img src='img/pick.png' style='width:10px;height:10px;'>":""%></td>
 					<td><%=vo.getWriterDate()%></td>
 				</tr>
 				<%

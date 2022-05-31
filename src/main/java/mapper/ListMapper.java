@@ -33,6 +33,7 @@ public class ListMapper {
 				vo.setTitle(rs.getString("title"));
 				vo.setWriter(rs.getString("writer"));
 				vo.setWriterDate(rs.getTimestamp("writerDate"));
+
 				list.add(vo);
 			}
 		} catch (Exception e){
@@ -210,6 +211,8 @@ public class ListMapper {
 						vo.setTitle(rs.getString("title"));
 						vo.setWriter(rs.getString("writer"));
 						vo.setWriterDate(rs.getTimestamp("writerDate"));
+						vo.setRealFileName(rs.getString("realFileName"));
+						vo.setRealSaveFileName(rs.getString("realSaveFileName"));
 						list.add(vo);
 					}
 				} catch (Exception e){
