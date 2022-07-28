@@ -50,7 +50,9 @@ public class ListController extends HttpServlet {
 		
 		int startPage = (pageNum - 1) * pageRow;
 		//LIMIT 할때 쓰는 것.
+		//여기까지 페이징 하는것.
 		
+		//검색하는것
 		String keyWord = request.getParameter("keyWord");
 		if(keyWord == null) {
 			keyWord = "";
@@ -109,7 +111,7 @@ public class ListController extends HttpServlet {
 		 * totalRow);
 		 */
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("list.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("board/list.jsp");
 		dispatcher.forward(request, response);
 	}
 

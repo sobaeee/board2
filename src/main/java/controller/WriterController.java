@@ -37,7 +37,7 @@ public class WriterController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("writer.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("board/writer.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -82,7 +82,7 @@ public class WriterController extends HttpServlet {
 		vo.setWriter(writer);
 		vo.setRealFileName(realFileName);
 		vo.setRealSaveFileName(realSaveFileName);
-		System.out.println(vo);
+		//System.out.println(vo);
 		
 		WriterServiceImpl service = new WriterServiceImpl();
 		service.insert(vo);

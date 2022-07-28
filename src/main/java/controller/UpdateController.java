@@ -48,7 +48,7 @@ public class UpdateController extends HttpServlet {
 		
 		request.setAttribute("vo", bvo);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("update.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("board/update.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -73,6 +73,7 @@ public class UpdateController extends HttpServlet {
 			targetDir.mkdir();
 		}
 		
+		
 		int maxSize = 10*1024*1024; //10Mb. 10을 20으로 바꾸면 20Mb
 		String encType ="UTF-8";
 		
@@ -83,15 +84,18 @@ public class UpdateController extends HttpServlet {
 		String title = multi.getParameter("title");
 		String content = multi.getParameter("content");
 		String writer = multi.getParameter("writer");
-		String rfn = multi.getParameter("rfn");
-		String rsfn = multi.getParameter("rsfn");
 		
 		
 		String realFileName = multi.getOriginalFileName("upfile");
-		if(realFileName != null) {
-			realFileName = rfn;
-		}
 		String realSaveFileName = multi.getFilesystemName("upfile");
+		
+		if(realFileName == null) {
+			realFileName = multi.getParameter("realFileName");
+			realSaveFileName = multi.getParameter("realSaveFileName");
+		} else {
+			File delFile = new File(realFolder, multi.getParameter("realSaveFileName"));
+			delFile.delete();
+		}
 
 		
 		BoardVO vo = new BoardVO();
@@ -99,8 +103,9 @@ public class UpdateController extends HttpServlet {
 		vo.setTitle(title);
 		vo.setContent(content);
 		vo.setWriter(writer);
-		vo.setRealFileName(rfn);
-		vo.setRealSaveFileName(rsfn);
+		
+		vo.setRealFileName(realFileName);
+		vo.setRealSaveFileName(realSaveFileName);
 		
 		UpdateServiceImpl service = new UpdateServiceImpl();
 		service.update(vo);

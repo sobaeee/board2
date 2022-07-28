@@ -54,14 +54,14 @@ if(pageNum > lastPage || pageNum < 1) {
 	<div class="container">
 		<div>
 			<div class="pull-left">전체글 수 : <%=totalRow%></div><br/>
-			<div>
+<%-- 			<div>
 			<form>
 			제목:<input type="text" name="titleF" value="<%=titleF %>" class="form-control" style="display:inline-block; width:10%"><br/>
 				내용:<input type="text" name="contentF" value="<%=contentF %>" class="form-control" style="display:inline-block; width:10%"><br/>
 				작성자:<input type="text" name="writerF" value="<%=writerF %>" class="form-control" style="display:inline-block; width:10%"><br/>
 				<button class="btn btn-default">검색</button>
 				</form>
-			</div>
+			</div> --%>
 			<div class="pull-right" style="width:310px">
 				<form>
 				<select name="field" class="form-control" style="display:inline-block; width:30%">
@@ -71,7 +71,7 @@ if(pageNum > lastPage || pageNum < 1) {
 					<option value="titleContent" <%="titleContent".equals(field)?"selected='selected'":"" %>>제목+내용</option>
 				</select>
 				<input type="text" name="keyWord" value="<%=keyWord %>" class="form-control" style="display:inline-block; width:50%">
-				<!-- <button class="btn btn-default">검색</button> -->
+				<button class="btn btn-default">검색</button>
 				</form>
 			</div>
 		</div>

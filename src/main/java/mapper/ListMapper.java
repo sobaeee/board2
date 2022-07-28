@@ -155,7 +155,7 @@ public class ListMapper {
 	}
 
 	public Collection<BoardVO> read(int startPage, int pageRow, String field, String keyWord) {
-		//DB불러오기
+				//DB불러오기
 				String url = "jdbc:mysql://localhost:3306/smart?characterEncoding=UTF-8&serverTimezone=Asia/Seoul";
 				String user = "root";
 				String password = "smart";

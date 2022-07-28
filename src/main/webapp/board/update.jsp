@@ -26,10 +26,11 @@
 </head>
 <body>
 	<div class="container">
-		<form method="post" action="update">
+		<form method="post" action="update" enctype="multipart/form-data">
+		<!-- enctype을 지정하면 request객체로 못받는다. -->
 			<input type="hidden" name="num" value="<%=vo.getNum() %>">
-			<input type="hidden" name="rfn" value="<%=vo.getRealFileName() %>">
-			<input type="hidden" name="rsfn" value="<%=vo.getRealSaveFileName() %>">
+			<input type="hidden" name="realFileName" value="<%=vo.getRealFileName() %>">
+			<input type="hidden" name="realSaveFileName" value="<%=vo.getRealSaveFileName() %>">
 			<table class="table">
 				<tr>
 					<th>제목</th>
